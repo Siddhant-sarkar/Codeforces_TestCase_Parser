@@ -1,0 +1,7 @@
+[
+	{
+		"caption": "Listen to Codeforces",
+		"keys": ["super+shift+u"],
+		"command": "fast_olympic_coding_hook",
+	}
+]
