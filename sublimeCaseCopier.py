@@ -17,13 +17,16 @@ def MakeHandlerClassFromFilename(filename):
                 tests = json.loads(body.decode('utf8'))
                 tests = tests["tests"]
                 ntests = []
-                sttt=""
+                sttt=[]
                 for test in tests:
-                    sttt += test['input'].strip()
+                    sttt.append( test['input'].strip())
                 k = os.path.split(filename)[0] +'/inputf.in'
                 nfilename = k
                 with open(nfilename, "w") as f:
-                    f.write(sttt)
+                    f.write(str(len(sttt)))
+                    for tstCase in sttt:
+                        f.write("\n\n")
+                        f.write(tstCase)
             except Exception as e:
                 print("Error handling POST - " + str(e))
             threading.Thread(target=self.server.shutdown, daemon=True).start()
@@ -47,4 +50,3 @@ class FastOlympicCodingHookCommand(sublime_plugin.TextCommand):
                                      (self.view.file_name(),))
         except Exception as e:
             print("Error: unable to start thread - " + str(e))
-
